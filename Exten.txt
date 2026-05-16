@@ -1,0 +1,7 @@
+Exten:
+
+- H2 Database
+- Spring Boot DevTools
+- Spring Data JPA
+- Spring Web
+- PostgreSQL Driver
