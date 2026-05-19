@@ -15,44 +15,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.serratec.aula5.model.Veiculo;
-import br.com.serratec.aula5.repository.VeiculoRepository;
+import br.com.serratec.aula5.model.Servico;
+import br.com.serratec.aula5.repository.ServicoRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/veiculos")
-public class VeiculoController {
+@RequestMapping("/servicos")
+public class ServicoController {
 
     @Autowired
-    private VeiculoRepository repository;
+    private ServicoRepository repository;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Veiculo inserir(@Valid @RequestBody Veiculo veiculo) {
-        return repository.save(veiculo);
+    public Servico inserir(@Valid @RequestBody Servico Servico) {
+        return repository.save(Servico);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Veiculo> alterar(@Valid @RequestBody Veiculo veiculo, @PathVariable Long id) {
+    public ResponseEntity<Servico> alterar(@Valid @RequestBody Servico Servico, @PathVariable Long id) {
         if (repository.existsById(id)) {
-            veiculo.setId(id);
-            return ResponseEntity.ok(repository.save(veiculo));
+            Servico.setId(id);
+            return ResponseEntity.ok(repository.save(Servico));
 
         }
         return ResponseEntity.notFound().build();
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Veiculo> buscar(@PathVariable Long id){
-        Optional<Veiculo> veiculo = repository.findById(id);
-        if (veiculo.isPresent()) {
-            ResponseEntity.ok(veiculo.get());
+    public ResponseEntity<Servico> buscar(@PathVariable Long id){
+        Optional<Servico> Servico = repository.findById(id);
+        if (Servico.isPresent()) {
+            ResponseEntity.ok(Servico.get());
         }
         return ResponseEntity.notFound().build();
     }
 
     @GetMapping
-    public List<Veiculo> listar(){
+    public List<Servico> listar(){
         return repository.findAll();
     }
 
