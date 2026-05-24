@@ -1,9 +1,13 @@
 package br.com.serratec.api.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Perfil {
@@ -13,6 +17,9 @@ public class Perfil {
     private Long id;
 
     private String nome;
+
+    @OneToMany(mappedBy = "id_perfil")
+    private Set<UsuarioPerfil> UsuarioPerfis = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -28,6 +35,14 @@ public class Perfil {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Set<UsuarioPerfil> getUsuarioPerfis() {
+        return UsuarioPerfis;
+    }
+
+    public void setUsuarioPerfis(Set<UsuarioPerfil> usuarioPerfis) {
+        UsuarioPerfis = usuarioPerfis;
     }
 
 }
